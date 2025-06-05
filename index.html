@@ -43,18 +43,30 @@
   <h1>Klick hier für eine Überraschung 🎁</h1>
   <button onclick="startRickroll()">Start</button>
 
-
+  <video id="rickroll" muted autoplay loop playsinline>
+    <source src="Rick_Astley_Never_Gonna_Give_You_Up.mp4" type="video/mp4" />
+    Dein Browser unterstützt dieses Video nicht.
+  </video>
 
   <script>
     function startRickroll() {
       const video = document.getElementById('rickroll');
+
+      // Video sichtbar machen
       video.style.display = 'block';
+
+      // Zurückspulen, Entstummen, neu starten
+      video.pause();
+      video.currentTime = 0;
       video.muted = false;
       video.volume = 1.0;
-      video.play().catch(err => {
-        console.error("Autoplay-Fehler:", err);
+      video.play().then(() => {
+        console.log("Video läuft mit Ton!");
+      }).catch((err) => {
+        console.error("Autoplay mit Ton wurde blockiert:", err);
       });
 
+      // Oberfläche verstecken
       document.querySelector('h1').style.display = 'none';
       document.querySelector('button').style.display = 'none';
     }
