@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎵 Überraschung 🎵</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    video {
+      width: 100%;
+      height: auto;
+      max-width: 1000px;
+    }
+  </style>
+</head>
+<body>
+  <video id="rickroll" autoplay playsinline>
+    <source src="https://ia800905.us.archive.org/27/items/NeverGonnaGiveYouUpHQ/Never%20Gonna%20Give%20You%20Up%20-%20Rick%20Astley.mp4" type="video/mp4">
+    Dein Browser unterstützt das Video-Element nicht.
+  </video>
+  <script>
+    const video = document.getElementById("rickroll");
+    video.muted = false;
+    video.volume = 1.0;
+    video.play().catch(err => {
+      console.warn("Autoplay mit Ton wurde blockiert. Nutzerinteraktion nötig.");
+    });
+  </script>
+</body>
+</html>
