@@ -2,36 +2,68 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎵 Überraschung 🎵</title>
+  <title>Überraschung 🎵</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
       background-color: black;
+      height: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      color: white;
+      font-family: sans-serif;
     }
+
     video {
-      width: 100%;
+      max-width: 100%;
       height: auto;
-      max-width: 1000px;
+      display: none;
+    }
+
+    button {
+      padding: 1em 2em;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff0055;
+      color: white;
+      cursor: pointer;
+      margin-top: 1em;
+    }
+
+    button:hover {
+      background-color: #cc0044;
     }
   </style>
 </head>
 <body>
-  <video id="rickroll" autoplay playsinline>
-    <source src="https://ia800905.us.archive.org/27/items/NeverGonnaGiveYouUpHQ/Never%20Gonna%20Give%20You%20Up%20-%20Rick%20Astley.mp4" type="video/mp4">
+
+  <h1>🎁 Klick hier für eine Überraschung</h1>
+  <button onclick="startRickroll()">Los geht's</button>
+
+  <video id="rickroll" autoplay loop playsinline>
+    <source src="https://ia800905.us.archive.org/27/items/NeverGonnaGiveYouUpHQ/Never%20Gonna%20Give%20You%20Up%20-%20Rick%20Astley.mp4" type="video/mp4" />
     Dein Browser unterstützt das Video-Element nicht.
   </video>
+
   <script>
-    const video = document.getElementById("rickroll");
-    video.muted = false;
-    video.volume = 1.0;
-    video.play().catch(err => {
-      console.warn("Autoplay mit Ton wurde blockiert. Nutzerinteraktion nötig.");
-    });
+    function startRickroll() {
+      const video = document.getElementById("rickroll");
+      video.muted = false;
+      video.volume = 1.0;
+      video.style.display = "block";
+      video.play().catch((err) => {
+        console.error("Video konnte nicht automatisch abgespielt werden:", err);
+      });
+
+      // Optional: Alles andere ausblenden
+      document.querySelector("h1").style.display = "none";
+      document.querySelector("button").style.display = "none";
+    }
   </script>
+
 </body>
 </html>
