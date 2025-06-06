@@ -6,7 +6,6 @@
   <style>
     body {
       margin: 0;
-      background: black;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -14,6 +13,14 @@
       height: 100vh;
       color: white;
       font-family: sans-serif;
+      transition: background-image 0.5s ease;
+    }
+
+    body.show-background {
+      background-image: url('kbw_bild.webp');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
 
     video {
@@ -38,7 +45,7 @@
     }
   </style>
 </head>
-<body>
+<body class="show-background">
 
   <h1>Klick hier um zu beginnen</h1>
   <button onclick="startRickroll()">Start</button>
@@ -54,6 +61,9 @@
 
       // Video sichtbar machen
       video.style.display = 'block';
+
+      // Hintergrundbild entfernen
+      document.body.classList.remove('show-background');
 
       // Zurückspulen, Entstummen, neu starten
       video.pause();
